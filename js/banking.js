@@ -12,14 +12,28 @@ function getUpdatedAcc(accountId, transectionAmount) {
     const updatedBalance = currentBalanceAmount + transectionAmount;
     currentAccText.innerText = updatedBalance;
     return currentAccText;
+};
+//updat balance accordingly
+function getBalanceUpdat(amount, isAdd) {
+    const balanceTotalText = document.getElementById('balance-total');
+    const balanceAmount = parseFloat(balanceTotalText.innerText);
+    if (isAdd == true) {
+        balanceTotalText.innerText = balanceAmount + amount;
+    }
+    else {
+        balanceTotalText.innerText = balanceAmount - amount;
+    }
+
 }
 document.getElementById('deposit-btn').addEventListener('click', function () {
     const depositAmount = getInputValue('deposit-input');
     getUpdatedAcc('deposit-total', depositAmount);
+    getBalanceUpdat(depositAmount, true)
 
 });
 document.getElementById('withdraw-btn').addEventListener('click', function () {
     const withdrawAmount = getInputValue('withdraw-input');
     getUpdatedAcc('withdraw-total', withdrawAmount);
+    getBalanceUpdat(withdrawAmount, false);
 
 })
