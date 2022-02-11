@@ -6,21 +6,20 @@ function getInputValue(inputId) {
     return inputAmount;
 };
 //get previous balance already in deposit or withdaw or balance
-function getCurrentAcc(accountId) {
+function getUpdatedAcc(accountId, transectionAmount) {
     const currentAccText = document.getElementById(accountId);
     const currentBalanceAmount = parseFloat(currentAccText.innerText);
-    return currentBalanceAmount;
+    const updatedBalance = currentBalanceAmount + transectionAmount;
+    currentAccText.innerText = updatedBalance;
+    return currentAccText;
 }
 document.getElementById('deposit-btn').addEventListener('click', function () {
     const depositAmount = getInputValue('deposit-input');
-    console.log(depositAmount);
-    const totalDepositedAmount = getCurrentAcc('deposit-total')
-    console.log(totalDepositedAmount);
+    getUpdatedAcc('deposit-total', depositAmount);
+
 });
 document.getElementById('withdraw-btn').addEventListener('click', function () {
     const withdrawAmount = getInputValue('withdraw-input');
-    console.log(withdrawAmount);
-    const totalWithdrawAmount = getCurrentAcc('withdraw-total');
-    console.log(totalWithdrawAmount);
+    getUpdatedAcc('withdraw-total', withdrawAmount);
 
 })
